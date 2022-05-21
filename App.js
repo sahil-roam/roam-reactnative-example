@@ -1,17 +1,12 @@
 
 
  import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
-  View, NativeModules
-} from 'react-native';
+  View} from 'react-native';
 import Roam from 'roam-reactnative';
 
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { TouchableHighlight } from 'react-native';
 
 
@@ -19,48 +14,51 @@ import { TouchableHighlight } from 'react-native';
 
 export default function App(){
 
-  const [response, setResponse] = useState('')
-
-  const { RoamModule } = NativeModules;
-
-  const PUBLISHABLE_KEY = ''
-
-  const initSdk = () => {
-    RoamModule.initializeRoam(PUBLISHABLE_KEY)
-    setResponse('initializing sdk..')
+ 
+  const startTracking = () => {
+    Roam.startTrackingTimeInterval(5, Roam.DesiredAccuracy.HIGH);
+    
+    Roam.setForegroundNotification(true,
+      "Awesome Example",
+      "Click here to redirect the app",
+      "mipmap/ic_launcher",
+      "com.baretest.MainActivity",
+      "com.baretest.RoamForegroundService");
   }
 
-  const createUser = () => {
-    console.log('create user called')
-    Roam.createUser("YOUR NAME", success => {
-      // do something on success
-      setResponse(JSON.stringify(success))
-     },
-     error => {
-     // do something on error
-     setResponse(JSON.stringify(error))
-     });
+  const stopTracking = () => {
+    Roam.stopTracking()
+    Roam.setForegroundNotification(false,
+      "Awesome Example",
+      "Click here to redirect the app",
+      "mipmap/ic_launcher",
+      "com.baretest.MainActivity",
+      "com.baretest.RoamForegroundService");
   }
 
+  useEffect(() => {
+    Roam.offlineLocationTracking(true)
+    Roam.disableBatteryOptimization()
+    
+  }, [])
+
+  
   
 
   return (
     <View style={styles.container}>
 
       <TouchableHighlight style={styles.button}
-      onPress={() => {initSdk()}}
+      onPress={() => {startTracking()}}
       >
-        <Text style={styles.buttonText}>Initialize</Text>
+        <Text style={styles.buttonText}>Start Tracking</Text>
       </TouchableHighlight>
 
       <TouchableHighlight style={styles.button}
-      onPress={() => {createUser()}}
+      onPress={() => {stopTracking()}}
       >
-        <Text style={styles.buttonText}>Create User</Text>
+        <Text style={styles.buttonText}>Stop Tracking</Text>
       </TouchableHighlight>
-
-
-      <Text style={{color: 'black'}}>Response: {response}</Text>
 
 
     </View>
@@ -83,6 +81,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textAlignVertical: 'center',
     color: 'white'
+  },
+  touchableOpacity: {
+    alignItems: 'center',
+    padding: 20
   }
 
 

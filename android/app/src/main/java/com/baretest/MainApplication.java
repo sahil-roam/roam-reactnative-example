@@ -8,6 +8,8 @@ import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.roam.sdk.Roam;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
@@ -46,6 +48,7 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
+      Roam.initialize(this, "951d66e696eb2a45e10430188ee35f2088cda5fbcec2015cba379f4d578003d6");
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }
 
