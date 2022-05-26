@@ -8,5 +8,5 @@ import {name as appName} from './app.json';
 import headlessTask from './roamtest';
 
 AppRegistry.registerComponent(appName, () => App);
-AppRegistry.registerHeadlessTask('RoamHeadlessService', headlessTask());
+//AppRegistry.registerHeadlessTask('RoamHeadlessService', headlessTask());
 

@@ -1,4 +1,5 @@
 #import "AppDelegate.h"
+#import <Roam/Roam.h>
 
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
@@ -27,6 +28,7 @@ static void InitializeFlipper(UIApplication *application) {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [Roam initialize:@"951d66e696eb2a45e10430188ee35f2088cda5fbcec2015cba379f4d578003d6" :NULL :NULL];
 #ifdef FB_SONARKIT_ENABLED
   InitializeFlipper(application);
 #endif

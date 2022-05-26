@@ -39,6 +39,13 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>location</string>
+		<string>processing</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -53,5 +60,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Add description for foreground only location usage.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Add description for background location usage. iOS 10 and below"</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Add description for background location usage. iOS 11 and above</string>
 </dict>
 </plist>
